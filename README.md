@@ -1,2 +1,5 @@
-# airflow101
-How to use Apace Airflow for developing and monitoring workflows
+# Apache Ariflow 101
+
+## Introduction
+
+We are going to review Apache Airflow features and use it to develop and monitor workflows.
