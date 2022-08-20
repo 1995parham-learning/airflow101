@@ -45,6 +45,7 @@ x-airflow-common:
   volumes:
     - ./dags:/opt/airflow/dags
     - ./plugins:/opt/airflow/plugins
+    - ./logs:/opt/airflow/logs
     - ./outputs:/outputs
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
@@ -209,7 +210,7 @@ services:
           echo
         fi
         mkdir -p /sources/logs /sources/dags /sources/plugins sources/outputs
-        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins,outputs}
+        chown -R "${AIRFLOW_UID:-50000}:0" /sources/{logs,plugins}
         exec /entrypoint airflow version
     # yamllint enable rule:line-length
     environment:
