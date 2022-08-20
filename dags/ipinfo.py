@@ -1,4 +1,5 @@
 import datetime as dt
+from typing import Any, Dict
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 import requests
@@ -14,9 +15,9 @@ dag = DAG(
 def _ipconfig():
     resp = requests.get("https://ipconfig.io/json")
     resp.raise_for_status()
-    info = resp.json
+    info: Dict[str, Any] = resp.json()
     with open("/outputs/country", "a", encoding="utf-8") as output_file:
-        output_file.write(f"{info.ip} @ {info.country}")
+        output_file.write(f"{info['ip']} @ {info['country']}")
         output_file.flush()
 
 
