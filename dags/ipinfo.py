@@ -14,7 +14,7 @@ dag = DAG(
 def _ipconfig():
     resp = requests.get("https://ipconfig.io/country")
     resp.raise_for_status()
-    with open("/outputs/country", "r") as output_file:
+    with open("/outputs/country", "a") as output_file:
         output_file.write(f"{resp.text}\n")
         output_file.flush()
 
