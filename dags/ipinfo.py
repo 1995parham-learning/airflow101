@@ -12,10 +12,11 @@ dag = DAG(
 
 
 def _ipconfig():
-    resp = requests.get("https://ipconfig.io/country")
+    resp = requests.get("https://ipconfig.io/json")
     resp.raise_for_status()
-    with open("/outputs/country", "a") as output_file:
-        output_file.write(f"{resp.text}\n")
+    info = resp.json
+    with open("/outputs/country", "a", encoding="utf-8") as output_file:
+        output_file.write(f"{info.ip} @ {info.country}")
         output_file.flush()
 
 
