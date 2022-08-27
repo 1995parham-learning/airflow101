@@ -12,8 +12,8 @@ dag = DAG(
 )
 
 
-def _ipconfig(**context):
-    output_file_name = context["templates_dict"]["output_file_name"]
+def _ipconfig(templates_dict):
+    output_file_name = templates_dict["output_file_name"]
 
     resp = requests.get("https://ipconfig.io/json")
     resp.raise_for_status()
