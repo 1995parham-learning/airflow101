@@ -12,9 +12,7 @@ dag = DAG(
 )
 
 
-def _ipconfig(templates_dict):
-    output_file_name = templates_dict["output_file_name"]
-
+def _ipconfig(output_file_name: str):
     resp = requests.get("https://ipconfig.io/json")
     resp.raise_for_status()
     info: Dict[str, Any] = resp.json()
@@ -26,6 +24,6 @@ def _ipconfig(templates_dict):
 ipconfig = PythonOperator(
     task_id="request_ip_country",
     python_callable=_ipconfig,
-    templates_dict={"output_file_name": "/outputs/{{ ts_nodash }}.txt"},
+    op_kwargs={"output_file_name": "/outputs/{{ ts_nodash }}.txt"},
     dag=dag,
 )
