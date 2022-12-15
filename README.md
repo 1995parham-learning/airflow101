@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/1995parham-learning/airflow101?style=for-the-badge">
+  <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/1995parham-learning/airflow101?style=for-the-badge&logo=python">
 </p>
 
 ## Introduction
