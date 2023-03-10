@@ -14,9 +14,10 @@ dag = DAG(
 helloer = DockerOperator(
     docker_url="unix://var/run/docker.sock",
     image="ghcr.io/1995parham-me/docker:latest",
-    command="echo 'Hi Elahe' > /app/message.txt",
+    command="-c \"echo 'Hi Elahe' > /app/message.txt\"",
     auto_remove=True,
     container_name="hello_my_love",
+    mount_tmp_dir=False,
     mounts=[
         Mount(source="/home/parham/Downloads/app", target="/app", type="bind"),
     ],
