@@ -16,3 +16,18 @@ docker compose up -d
 ```
 
 You can maintain DAGs in `/dags` and have access to its UI at `127.0.0.1:8080`.
+
+## Using it with Docker Operator
+
+For having Docker operator in Airflow we need to pass Docker's socket into docker:
+
+```
+/var/run/docker.sock
+```
+
+This socket belongs to root user and docker group, but we don't have either of these in Airflow container
+so, we need to give read and write access to others for this socket.
+
+```bash
+sudo chmod o+rw /var/run/docker.sock
+```
