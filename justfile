@@ -3,8 +3,17 @@ default:
 
 # create requirements for docker-compose
 env:
+    #!/usr/bin/env bash
     mkdir -p ./dags ./logs ./plugins ./config
     echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+# seed airflow.cfg with default values in config folder.
+config:
+    docker compose run airflow-cli airflow config list
+
+# initialize database
+database-init:
+    docker compose up airflow-init
 
 # set up the dev environment with docker-compose
 dev cmd *flags:
@@ -15,8 +24,11 @@ dev cmd *flags:
       docker compose down
       docker compose rm
     elif [ {{ cmd }} = 'up' ]; then
-      @just env
+      just env
+      just config
+      just database-init
       docker compose up --wait -d {{ flags }}
+      docker compose run airflow-worker airflow info
     else
       docker compose {{ cmd }} {{ flags }}
     fi

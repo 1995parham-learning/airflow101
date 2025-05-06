@@ -132,3 +132,4 @@ dmypy.json
 outputs
 plugins
 logs
+config/airflow.cfg
