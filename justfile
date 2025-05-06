@@ -24,8 +24,8 @@ dev cmd *flags:
       docker compose down --volumes --remove-orphans
     elif [ {{ cmd }} = 'up' ]; then
       just env
-      just config
       just database-init
+      just config
       docker compose up --wait -d {{ flags }}
       docker compose run airflow-worker airflow info
     else
