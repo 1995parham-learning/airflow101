@@ -21,8 +21,7 @@ dev cmd *flags:
     echo '{{ BOLD + YELLOW }}Development environment based on docker-compose{{ NORMAL }}'
     set -euxo pipefail
     if [ {{ cmd }} = 'down' ]; then
-      docker compose down
-      docker compose rm
+      docker compose down --volumes --remove-orphans
     elif [ {{ cmd }} = 'up' ]; then
       just env
       just config
