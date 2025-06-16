@@ -19,7 +19,8 @@ database-init:
 dev cmd *flags:
     #!/usr/bin/env bash
     echo '{{ BOLD + YELLOW }}Development environment based on docker-compose{{ NORMAL }}'
-    set -euxo pipefail
+    set -eu
+    set -o pipefail
     if [ {{ cmd }} = 'down' ]; then
       docker compose down --volumes --remove-orphans
     elif [ {{ cmd }} = 'up' ]; then
