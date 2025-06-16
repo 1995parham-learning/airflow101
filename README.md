@@ -12,7 +12,10 @@ We are going to review Apache Airflow features and use it to develop and monitor
 In order to examine source codes, you first need to have an instance of airflow:
 
 ```bash
-docker compose up -d
+just dev up
+
+# username: airflow
+# password: airflow
 ```
 
 You can maintain DAGs in `/dags` and have access to its UI at `127.0.0.1:8080`.
